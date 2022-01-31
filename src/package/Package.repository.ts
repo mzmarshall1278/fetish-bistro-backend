@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { getPackageFilterDto } from "./dto/getFilter.dto";
 import { Package } from "./Package.model";
 
 @Injectable()
@@ -10,7 +11,7 @@ export class PackageRepository {
         private readonly Package: Model<Package>
     ){}
 
-    async getAllPackages(): Promise<Package[]>{
+    async getAllPackages(etPackageFilter: getPackageFilterDto): Promise<Package[]>{
         return this.Package.aggregate([])
     }
 }
