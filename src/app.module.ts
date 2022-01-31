@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { PackageModule } from './package/package.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [PackageModule, UsersModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/erp'),
+    PackageModule,
+    UsersModule],
 })
 export class AppModule {}
