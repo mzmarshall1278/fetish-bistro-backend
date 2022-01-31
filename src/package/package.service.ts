@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { getPackageFilterDto } from './dto/getFilter.dto';
 import { Package } from './Package.model';
 import { PackageRepository } from './Package.repository';
 
@@ -8,7 +9,7 @@ export class PackageService {
         private packageRepository: PackageRepository
     ){}
 
-        async getAllPackages(): Promise<Package[]>{
-            return this.packageRepository.getAllPackages()
+        async getAllPackages(etPackageFilter: getPackageFilterDto): Promise<Package[]>{
+            return this.packageRepository.getAllPackages(etPackageFilter)
         }
 }
