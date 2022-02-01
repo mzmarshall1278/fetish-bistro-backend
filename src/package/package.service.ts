@@ -12,4 +12,8 @@ export class PackageService {
         async getAllPackages(etPackageFilter: getPackageFilterDto): Promise<Package[]>{
             return this.packageRepository.getAllPackages(etPackageFilter)
         }
+
+        async getSinglePackage(id: string): Promise<Package> {
+            return this.packageRepository.getSinglePackage(id)
+        }
 }
