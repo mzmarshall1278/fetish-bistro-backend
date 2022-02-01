@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import { getPackageFilterDto } from "./dto/getFilter.dto";
 import { Package } from "./Package.model";
 import { CreatePackageDto } from './dto/createPackage.dto';
+import { AddCommentDto } from './dto/addComment.dto';
 
 @Injectable()
 export class PackageRepository {
@@ -30,4 +31,10 @@ export class PackageRepository {
         return savedPackage;
     }
 
+    async addComment(addCommentDto: AddCommentDto): Promise<Package>{
+        const {userName, packageId, rating, comment} = addCommentDto;
+
+        const commentToSave = {username: userName, rating, comment}
+        return this.Package.findOneAndUpdate({packageId}, {$push: {comments: commentToSave}})
+    }
 }
