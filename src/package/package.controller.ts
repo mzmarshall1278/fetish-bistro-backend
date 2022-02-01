@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param } from '@nestjs/common';
 import { getPackageFilterDto } from './dto/getFilter.dto';
 import { Package } from './Package.model';
 import { PackageService } from './package.service';
@@ -12,5 +12,10 @@ export class PackageController {
     @Get('/')
     getAllPackages(@Body() getPackageFilter: getPackageFilterDto):Promise<Package[]>{
         return this.packageService.getAllPackages(getPackageFilter)
+    }
+
+    @Get('/:id')
+    getSinglePackage(@Param('id') id: string): Promise<Package>{
+        return this.packageService.getSinglePackage(id)
     }
 }
