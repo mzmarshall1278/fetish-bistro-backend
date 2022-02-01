@@ -3,6 +3,7 @@ import { getPackageFilterDto } from './dto/getFilter.dto';
 import { Package } from './Package.model';
 import { PackageRepository } from './Package.repository';
 import { CreatePackageDto } from './dto/createPackage.dto';
+import { AddCommentDto } from './dto/addComment.dto';
 
 @Injectable()
 export class PackageService {
@@ -20,5 +21,9 @@ export class PackageService {
 
         async createPackage(createPackageDto: CreatePackageDto): Promise<Package>{
             return this.packageRepository.createPackage(createPackageDto);
+        }
+
+        async addComment(addCommentDto: AddCommentDto): Promise<Package>{
+            return this.packageRepository.addComment(addCommentDto);
         }
 }
