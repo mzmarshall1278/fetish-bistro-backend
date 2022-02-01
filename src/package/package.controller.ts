@@ -3,6 +3,7 @@ import { getPackageFilterDto } from './dto/getFilter.dto';
 import { Package } from './Package.model';
 import { PackageService } from './package.service';
 import { CreatePackageDto } from './dto/createPackage.dto';
+import { AddCommentDto } from './dto/addComment.dto';
 
 @Controller('package')
 export class PackageController {
@@ -23,5 +24,10 @@ export class PackageController {
     @Post('/')
     addPackage(@Body() createPackageDto: CreatePackageDto): Promise<Package>{
         return this.packageService.createPackage(createPackageDto);
+    }
+
+    @Post('/:id')
+    addComment(@Body() addCommentDto: AddCommentDto):Promise<Package> {
+        return this.packageService.addComment(addCommentDto);
     }
 }
