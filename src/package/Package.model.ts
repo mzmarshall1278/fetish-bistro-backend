@@ -11,6 +11,7 @@ export const packageSchema = new mongoose.Schema({
 });
 
 export interface Package {
+    id: string;
     price: number;
     name: string;
     description: string;
