@@ -5,6 +5,7 @@ import { getPackageFilterDto } from "./dto/getFilter.dto";
 import { Package } from "./Package.model";
 import { CreatePackageDto } from './dto/createPackage.dto';
 import { AddCommentDto } from './dto/addComment.dto';
+import { UpdatePackageDto } from './dto/updatePackage.dto';
 
 @Injectable()
 export class PackageRepository {
@@ -13,7 +14,7 @@ export class PackageRepository {
         private readonly Package: Model<Package>
     ){}
 
-    async getAllPackages(etPackageFilter: getPackageFilterDto): Promise<Package[]>{
+    async getAllPackages(getPackageFilter: getPackageFilterDto): Promise<Package[]>{
         return this.Package.aggregate([])
     }
 
@@ -35,6 +36,15 @@ export class PackageRepository {
         const {userName, packageId, rating, comment} = addCommentDto;
 
         const commentToSave = {username: userName, rating, comment}
-        return this.Package.findOneAndUpdate({packageId}, {$push: {comments: commentToSave}})
+        return this.Package.findOneAndUpdate({id: packageId}, {$push: {comments: commentToSave}})
+    }
+
+    async updatePackage(updatePackageDto: UpdatePackageDto): Promise<Package>{
+
+        const {id, name, description, imageUrl, available} = updatePackageDto
+
+        let updatedPackage;
+
+        return this.Package.findOneAndUpdate({id}, {$set: {name, description, imageUrl, available}});
     }
 }
