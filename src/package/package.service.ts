@@ -4,6 +4,7 @@ import { Package } from './Package.model';
 import { PackageRepository } from './Package.repository';
 import { CreatePackageDto } from './dto/createPackage.dto';
 import { AddCommentDto } from './dto/addComment.dto';
+import { UpdatePackageDto } from './dto/updatePackage.dto';
 
 @Injectable()
 export class PackageService {
@@ -25,5 +26,9 @@ export class PackageService {
 
         async addComment(addCommentDto: AddCommentDto): Promise<Package>{
             return this.packageRepository.addComment(addCommentDto);
+        }
+
+        async updatePackage(updatePackageDto: UpdatePackageDto): Promise<Package>{
+            return this.packageRepository.updatePackage(updatePackageDto);
         }
 }
