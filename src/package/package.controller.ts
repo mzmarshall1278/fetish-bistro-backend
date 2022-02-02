@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { getPackageFilterDto } from './dto/getFilter.dto';
 import { Package } from './Package.model';
 import { PackageService } from './package.service';
 import { CreatePackageDto } from './dto/createPackage.dto';
 import { AddCommentDto } from './dto/addComment.dto';
+import { UpdatePackageDto } from './dto/updatePackage.dto';
 
 @Controller('package')
 export class PackageController {
@@ -29,5 +30,10 @@ export class PackageController {
     @Post('/:id')
     addComment(@Body() addCommentDto: AddCommentDto):Promise<Package> {
         return this.packageService.addComment(addCommentDto);
+    }
+
+    @Put()
+    updatePackage(@Body() updatePackageDto: UpdatePackageDto): Promise<Package>{
+        return this.packageService.updatePackage(updatePackageDto);
     }
 }
