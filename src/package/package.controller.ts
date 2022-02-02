@@ -32,7 +32,7 @@ export class PackageController {
         return this.packageService.addComment(addCommentDto);
     }
 
-    @Put()
+    @Put('/:id')
     updatePackage(@Body() updatePackageDto: UpdatePackageDto): Promise<Package>{
         return this.packageService.updatePackage(updatePackageDto);
     }
