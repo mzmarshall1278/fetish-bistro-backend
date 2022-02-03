@@ -7,7 +7,8 @@ export const packageSchema = new mongoose.Schema({
     quantity: {type: Number, required: true},
     imageUrl: {type: String, required: true},
     comments: {type: Array, required: false},
-    available: {type: Boolean, required: true}
+    available: {type: Boolean, required: true},
+    userType: {type: String, enum: ['Admin', 'Regular', 'Developer'], required: true}
 });
 
 export interface Package {
@@ -19,4 +20,12 @@ export interface Package {
     imageUrl: string;
     comments: [];
     available: boolean;
+    userType: UserType;
+
+}
+
+export enum UserType {
+    admin = 'Admin',
+    regular = 'Regular',
+    developer = 'Developer'
 }
