@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose'
 
-export const fclassSchema = new mongoose.Schema({
+export const FclassSchema = new mongoose.Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
     fee: {type: Number, required: true},
