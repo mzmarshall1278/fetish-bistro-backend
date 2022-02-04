@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Put } from '@nestjs/common';
 import { FClass } from './fclass.model';
 import { FclassService } from './fclass.service';
+import { RegisterClassDto } from './dto/registerClass.dto';
 
 @Controller('fclass')
 export class FclassController {
@@ -9,5 +10,10 @@ export class FclassController {
     @Get('/')
     getAllClasses(): Promise<FClass[]> {
         return this.fclassService.getAllClasses()
+    }
+
+    @Put('/:id')
+    registerForClass(@Body() registerDto: RegisterClassDto){
+        return this.fclassService.registerForClass(registerDto);
     }
 }
