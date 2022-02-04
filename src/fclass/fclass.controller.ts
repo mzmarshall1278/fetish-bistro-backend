@@ -2,6 +2,7 @@ import { Body, Controller, Get, Put } from '@nestjs/common';
 import { FClass } from './fclass.model';
 import { FclassService } from './fclass.service';
 import { RegisterClassDto } from './dto/registerClass.dto';
+import { UpdateWriteOpResult } from 'mongoose';
 
 @Controller('fclass')
 export class FclassController {
@@ -13,7 +14,7 @@ export class FclassController {
     }
 
     @Put('/:id')
-    registerForClass(@Body() registerDto: RegisterClassDto){
+    registerForClass(@Body() registerDto: RegisterClassDto): Promise<UpdateWriteOpResult>{
         return this.fclassService.registerForClass(registerDto);
     }
 }
