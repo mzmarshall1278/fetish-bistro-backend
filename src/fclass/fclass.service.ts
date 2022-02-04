@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { FClass } from './fclass.model';
 import { FClassRepository } from './fclass.repository';
 
 @Injectable()
@@ -7,7 +8,7 @@ export class FclassService {
         private fclsaaRepository: FClassRepository
     ){}
 
-    async getAllClasses(){
+    async getAllClasses(): Promise<FClass[]> {
         return this.fclsaaRepository.getAllClasses()
     }
 }
