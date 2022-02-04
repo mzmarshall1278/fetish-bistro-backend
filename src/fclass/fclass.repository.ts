@@ -8,5 +8,7 @@ export class FClassRepository {
         private readonly FClass: Model<FClass>
     ){}
 
-    
+    async getAllClasses() {
+        return this.FClass.aggregate([]);
+    }
 }
