@@ -9,7 +9,7 @@ export const FclassSchema = new mongoose.Schema({
     endDate: {type: String, required: true},
     status: {type: String, enum: ['Open', 'Started', 'Finished'], required: true},
     registeredUsers: {type: Array, required: true},
-    discount: {type: String, required: true},
+    discount: {type: Number, required: true},
 })
 
 export enum StatusType {
