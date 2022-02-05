@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { FClass } from './fclass.model';
 import { FclassService } from './fclass.service';
 import { RegisterClassDto } from './dto/registerClass.dto';
 import { UpdateWriteOpResult } from 'mongoose';
+import { CreateClassDto } from './dto/createClass.dto';
 
 @Controller('fclass')
 export class FclassController {
@@ -16,5 +17,10 @@ export class FclassController {
     @Put('/:id')
     registerForClass(@Body() registerDto: RegisterClassDto): Promise<UpdateWriteOpResult>{
         return this.fclassService.registerForClass(registerDto);
+    }
+
+    @Post('/')
+    createClass(@Body() createClassDto: CreateClassDto){
+        return this.fclassService.createClass(createClassDto)
     }
 }
