@@ -20,7 +20,7 @@ export class FclassController {
     }
 
     @Post('/')
-    createClass(@Body() createClassDto: CreateClassDto){
+    createClass(@Body() createClassDto: CreateClassDto): Promise<FClass>{
         return this.fclassService.createClass(createClassDto)
     }
 }

@@ -19,7 +19,7 @@ export class FClassRepository {
         return this.FClass.updateOne({id}, {$push: {registeredUsers: {user, date}}})
     }
 
-    async createClass(createClassDto: CreateClassDto) {
+    async createClass(createClassDto: CreateClassDto): Promise<FClass>{
         const fClass = new this.FClass(createClassDto).save()
         return fClass;
     }

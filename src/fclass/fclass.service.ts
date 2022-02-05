@@ -19,7 +19,7 @@ export class FclassService {
         return this.fclassRepository.registerForClass(registerDto);
     }
 
-    async createClass(createClassDto: CreateClassDto) {
+    async createClass(createClassDto: CreateClassDto): Promise<FClass>{
         return this.fclassRepository.createClass(createClassDto);
     }
 }
