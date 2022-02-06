@@ -10,7 +10,7 @@ export enum OrderStatus {
     delivered = 'Delivered'
 }
 
-export const orderSchema = new mongoose.Schema({
+export const OrderSchema = new mongoose.Schema({
     user: {},
     package: {},
     quantity: {},
