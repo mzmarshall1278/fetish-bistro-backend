@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose'
+import { FClass } from 'src/fclass/fclass.model';
 
 export enum UserType {
     admin = 'Admin',
@@ -23,6 +24,6 @@ export interface User {
     salt: string;
     UserType: UserType;
     orders: [];
-    classes: [];
+    classes: FClass[];
 }
 
