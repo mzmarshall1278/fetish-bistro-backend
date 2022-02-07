@@ -1,6 +1,4 @@
 import * as mongoose from 'mongoose'
-import { User } from 'src/auth/user.model'
-import { Package } from 'src/package/Package.model'
 
 export enum OrderStatus {
     new = 'New',
@@ -11,17 +9,18 @@ export enum OrderStatus {
 }
 
 export const OrderSchema = new mongoose.Schema({
-    user: {},
-    package: {},
-    quantity: {},
-    price: {},
-    date: {},
-    status: {}
+    user: {type: String, required: true},
+    package: {type: String, required: true},
+    quantity: {type: Number, required: true},
+    price: {type: Number, required: true},
+    date: {type: String, required: true},
+    status: {type: String, enum: OrderStatus, required: true}
 })
 
 export class Order {
-    user: User
-    package: Package;
+    id: string
+    user: string
+    package: string;
     quantity: number
     price: number;
     date: string;
