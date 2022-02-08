@@ -4,6 +4,7 @@ import { PackageModule } from './package/package.module';
 import { FclassModule } from './fclass/fclass.module';
 import { AuthModule } from './auth/auth.module';
 import { OrderModule } from './order/order.module';
+import { RegistrationModule } from './registration/registration.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { OrderModule } from './order/order.module';
     PackageModule,
     FclassModule,
     AuthModule,
-    OrderModule],
+    OrderModule,
+    RegistrationModule],
 })
 export class AppModule {}
