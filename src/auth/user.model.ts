@@ -12,6 +12,7 @@ export const UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     salt: {type: String, required: true},
+    phoneNumber: {type: String, required: true},
     userType: {type: String, enum: UserType, required: true},
     orders: {type: Array, required: true},
     classes: {type: String, required: true},
@@ -23,6 +24,7 @@ export interface User {
     password: string;
     salt: string;
     UserType: UserType;
+    phoneNumber: string,
     orders: [];
     classes: FClass[];
 }
