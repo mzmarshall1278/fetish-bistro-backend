@@ -8,8 +8,8 @@ export const FclassSchema = new mongoose.Schema({
     startDate: {type: String, required: true},
     endDate: {type: String, required: true},
     status: {type: String, enum: ['Open', 'Started', 'Finished'], required: true},
-    registeredUsers: {type: Array, required: true},
     discount: {type: Number, required: true},
+    openForRegistration: {type: Boolean, required: true}
 })
 
 export enum StatusType {
@@ -19,6 +19,7 @@ export enum StatusType {
 }
 
 export interface FClass {
+    id: string;
     name: string;
     description: string;
     fee: number;
@@ -26,6 +27,6 @@ export interface FClass {
     startDate: string;
     endDate: string;
     status: StatusType;
-    registeredUsers: []
-    discount: number
+    discount: number;
+    openForRegistration: boolean;
 }
