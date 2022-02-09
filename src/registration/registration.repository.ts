@@ -27,4 +27,11 @@ export class RegistrationRepository {
         }
     }
 
+    async getFClassRegistration(fclassId: string) {
+        const registrations = await this.Registration.aggregate([
+            {$match: {fclass: fclassId}}
+        ]);
+        return registrations;
+    }
+
 }
