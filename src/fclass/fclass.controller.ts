@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { FClass } from './fclass.model';
 import { FclassService } from './fclass.service';
 import { CreateClassDto } from './dto/createClass.dto';
@@ -17,8 +17,8 @@ export class FclassController {
         return this.fclassService.createClass(createClassDto)
     }
 
-    @Put()
-    closeFclassRegistration (@Body() id: string): Promise<FClass> {
+    @Put('/id')
+    closeFclassRegistration (@Param('id') id: string): Promise<FClass> {
         return this.fclassService.closeFclassRegistration(id);
     }
 }
