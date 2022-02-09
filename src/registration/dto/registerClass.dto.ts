@@ -11,4 +11,7 @@ export class RegisterClassDto {
     @IsNotEmpty()
     date: string
 
+    @IsNotEmpty()
+    openForRegistration: Boolean
+
 }
