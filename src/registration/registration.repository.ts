@@ -1,15 +1,17 @@
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, UpdateWriteOpResult } from 'mongoose';
+import { Model } from 'mongoose';
 import { Registration } from "./registration.model";
 import { RegisterClassDto } from './dto/registerClass.dto';
 import * as mongoose from 'mongoose';
-import { NotFoundException } from "@nestjs/common";
+import { ForbiddenException, NotFoundException } from "@nestjs/common";
 
 export class RegistrationRepository {
     constructor (@InjectModel('Registration')  private readonly Registration: Model<Registration>){}
     
     async registerForClass(registerClass: RegisterClassDto): Promise<Registration> {
-        const { user, fclass, date } = registerClass
+        const { user, fclass, date, openForRegistration } = registerClass
+
+        if(!openForRegistration) throw new ForbiddenException('Registration has been closed');
         const registration = await new this.Registration({
             user: new mongoose.Types.ObjectId(user), fclass:  new mongoose.Types.ObjectId(fclass), date, status: 'Pending'
         }).save()
