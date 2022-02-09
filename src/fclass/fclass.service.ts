@@ -16,4 +16,8 @@ export class FclassService {
     async createClass(createClassDto: CreateClassDto): Promise<FClass>{
         return this.fclassRepository.createClass(createClassDto);
     }
+
+    async closeFclassRegistration (id: string): Promise<FClass> {
+        return this.fclassRepository.closeFclassRegistration(id)
+    }
 }
