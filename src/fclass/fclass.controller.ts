@@ -16,4 +16,9 @@ export class FclassController {
     createClass(@Body() createClassDto: CreateClassDto): Promise<FClass>{
         return this.fclassService.createClass(createClassDto)
     }
+
+    @Put()
+    closeFclassRegistration (@Body() id: string): Promise<FClass> {
+        return this.fclassService.closeFclassRegistration(id);
+    }
 }
