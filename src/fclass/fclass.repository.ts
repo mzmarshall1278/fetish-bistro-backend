@@ -19,4 +19,9 @@ export class FClassRepository {
         const fClass = await new this.FClass(createClassDto).save()
         return fClass;
     }
+
+    async closeFclassRegistration (id: string): Promise<FClass> {
+        const fclass = await this.FClass.findOneAndUpdate({_id: id},{$set: {openForRegistration: false}});
+        return fclass
+    }
 }
