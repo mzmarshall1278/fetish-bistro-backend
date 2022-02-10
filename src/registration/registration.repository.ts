@@ -9,7 +9,7 @@ export class RegistrationRepository {
     constructor (@InjectModel('Registration')  private readonly Registration: Model<Registration>){}
     
     async registerForClass(registerClass: RegisterClassDto): Promise<Registration> {
-        const { user, fclass, date, openForRegistration } = registerClass
+        const { user, fclass, date, openForRegistration } = registerClass;
 
         if(!openForRegistration) throw new ForbiddenException('Registration has been closed');
         const registration = await new this.Registration({

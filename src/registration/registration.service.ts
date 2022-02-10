@@ -14,4 +14,8 @@ export class RegistrationService {
     async confirmRegistration(registrationId: string): Promise<Registration>{
         return this.registrationRepository.confirmRegistration(registrationId);
     }
+
+    async getFClassRegistration(fclassId: string) {
+        return this.registrationRepository.getFClassRegistration(fclassId);
+    }
 }
