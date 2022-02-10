@@ -12,7 +12,7 @@ export class OrderController {
         return this.orderService.makeOrder(createOrderDto);
     }
 
-    @Put()
+    @Put('/:id')
     updateOrderStatus(@Param('id') id: string, @Body('status') status: OrderStatus){
         return this.orderService.UpdateOrderStatus( id ,status)
     }
