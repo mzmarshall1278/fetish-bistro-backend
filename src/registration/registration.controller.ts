@@ -11,7 +11,8 @@ export class RegistrationController {
         return this.registrationService.registerForClass(registerClassDto);
     }
 
-    confirmRegistration(@Param() registrationId: string): Promise<Registration> {
+    @Get('/:id')
+    confirmRegistration(@Param('id') registrationId: string): Promise<Registration> {
         return this.registrationService.confirmRegistration(registrationId);
     }
 }
