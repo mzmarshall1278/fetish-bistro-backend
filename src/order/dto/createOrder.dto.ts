@@ -22,8 +22,4 @@ export class CreateOrderDto {
     @IsNotEmpty()
     @IsString()
     date: string;
-
-    @IsNotEmpty()
-    @IsString()
-    status: Order;
 }
