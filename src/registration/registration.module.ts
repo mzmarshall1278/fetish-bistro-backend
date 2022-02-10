@@ -11,6 +11,7 @@ import { RegistrationRepository } from './registration.repository';
     MongooseModule.forFeature([{name: 'Registration', schema: RegistrationSchema}])
   ],
   controllers: [RegistrationController],
-  providers: [RegistrationService, RegistrationRepository]
+  providers: [RegistrationService, RegistrationRepository],
+  exports: [RegistrationService]
 })
 export class RegistrationModule {}
