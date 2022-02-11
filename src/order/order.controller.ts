@@ -13,7 +13,9 @@ export class OrderController {
     }
 
     @Put('/:id')
-    updateOrderStatus(@Param('id') id: string, @Body('status') status: OrderStatus){
+    updateOrderStatus(@Param('id') id: string, @Body('status') status: OrderStatus): Promise<Order>{
         return this.orderService.UpdateOrderStatus( id ,status)
     }
+
+    
 }
