@@ -17,7 +17,7 @@ export class OrderRepository {
         return this.Order.findByIdAndUpdate({id}, {$set:{status}})
     }
 
-    async getUsersOrders (userId: string) {
+    async getUsersOrders (userId: string): Promise<Order[]> {
         return this.Order.aggregate([
             {$match: {user: userId}}
         ])
