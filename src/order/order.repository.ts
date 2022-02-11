@@ -13,7 +13,13 @@ export class OrderRepository {
         return order;
     }
 
-    async UpdateOrderStatus(id: string, status: OrderStatus) {
+    async UpdateOrderStatus(id: string, status: OrderStatus): Promise<Order> {
         return this.Order.findByIdAndUpdate({id}, {$set:{status}})
+    }
+
+    async getUsersOrders (userId: string) {
+        return this.Order.aggregate([
+            {$match: {user: userId}}
+        ])
     }
 }
