@@ -18,7 +18,7 @@ export class OrderController {
     }
 
     @Get('/:userId')
-    getUsersOrders(@Param('userId') userId: string) {
+    getUsersOrders(@Param('userId') userId: string): Promise<Order[]> {
         return this.orderService.getUsersOrders(userId);
     }
 }
