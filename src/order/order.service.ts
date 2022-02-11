@@ -11,7 +11,11 @@ export class OrderService {
         return this.orderRepository.makeOrder(createOrderDto);
     }
 
-    async UpdateOrderStatus(id: string, status: OrderStatus) {
+    async UpdateOrderStatus(id: string, status: OrderStatus): Promise<Order> {
         return this.orderRepository.UpdateOrderStatus(id, status);
+    }
+
+    async getUsersOrders (userId: string) {
+        return this.orderRepository.getUsersOrders(userId)
     }
 }
