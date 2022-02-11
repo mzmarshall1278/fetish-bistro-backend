@@ -15,7 +15,7 @@ export class OrderService {
         return this.orderRepository.UpdateOrderStatus(id, status);
     }
 
-    async getUsersOrders (userId: string) {
+    async getUsersOrders (userId: string): Promise<Order[]> {
         return this.orderRepository.getUsersOrders(userId)
     }
 }
