@@ -17,5 +17,8 @@ export class OrderController {
         return this.orderService.UpdateOrderStatus( id ,status)
     }
 
-    
+    @Get('/:userId')
+    getUsersOrders(@Param('userId') userId: string) {
+        return this.orderService.getUsersOrders(userId);
+    }
 }
