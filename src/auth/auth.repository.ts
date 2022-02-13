@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import { User } from "./user.model";
 import { SignupDto } from './dto/signup.dto';
 import bcrypt from 'bcrypt';
+import { LoginDto } from './dto/login.dto';
 
 
 @Injectable()
@@ -29,6 +30,12 @@ export class AuthRepository {
         } catch (error) {
             throw error;
         }
+    }
+
+    async login(credentials: LoginDto){
+        const {username, email, password} = credentials;
+
+        const user = await this.User.findOne({})
     }
 
     private async hashPassword (password: string, salt: string):Promise<string> {
