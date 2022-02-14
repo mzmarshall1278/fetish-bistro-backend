@@ -44,19 +44,19 @@ export class AuthRepository {
         const userIsVerified = await this.validatePassword(password, user.password, user.salt);
         if(!userIsVerified) throw new UnauthorizedException('Invalid credentials');
 
-        const payload: JwtPayload = {username: user.username, email: user.email};
+        const payload: JwtPayload = {username: user.username, email: user.email, userType: user.UserType};
         const accessToken: string = await this.jwtService.sign(payload);
         return { accessToken };
     }
 
-    async getLoggedInUser(user) {
+    async getLoggedInUser(user): Promise<JwtPayload> {
         if (!user) {
             throw new UnauthorizedException('Authorization error');
           }
     
             const foundUser = await this.User.findOne({user: user.username});
     
-            return {username: foundUser.username, type: foundUser.UserType, emial: foundUser.email}
+            return {username: foundUser.username, userType: foundUser.UserType, email: foundUser.email}
     }
 
 
