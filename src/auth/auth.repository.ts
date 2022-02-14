@@ -35,11 +35,11 @@ export class AuthRepository {
         }
     }
 
-    async login(credentials: LoginDto){
+    async login(credentials: LoginDto): Promise<{accessToken: string}>{
         const {username, email, password} = credentials;
 
         const user = await this.User.findOne({$or: [{username}, {email}]});
-        if(!user) throw new UnauthorizedException('Invalid Credentiails');
+        if(!user) throw new UnauthorizedException('Invalid Credentials');
 
         const userIsVerified = await this.validatePassword(password, user.password, user.salt);
         if(!userIsVerified) throw new UnauthorizedException('Invalid credentials');
@@ -48,6 +48,17 @@ export class AuthRepository {
         const accessToken: string = await this.jwtService.sign(payload);
         return { accessToken };
     }
+
+    async getLoggedInUser(user) {
+        if (!user) {
+            throw new UnauthorizedException('Authorization error');
+          }
+    
+            const foundUser = await this.User.findOne({user: user.username});
+    
+            return {username: foundUser.username, type: foundUser.UserType, emial: foundUser.email}
+    }
+
 
     private async hashPassword (password: string, salt: string):Promise<string> {
         return bcrypt.hash(password, salt);
