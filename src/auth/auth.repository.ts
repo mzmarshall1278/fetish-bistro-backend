@@ -49,7 +49,7 @@ export class AuthRepository {
         return { accessToken };
     }
 
-    async getLoggedInUser(user): Promise<JwtPayload> {
+    async getLoggedInUser(user: User): Promise<JwtPayload> {
         if (!user) {
             throw new UnauthorizedException('Authorization error');
           }
