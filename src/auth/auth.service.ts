@@ -3,7 +3,7 @@ import { AuthRepository } from './auth.repository';
 import { SignupDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtPayload } from './jwt.payload';
-import { User } from '../../dist/auth/user.model';
+import { User } from './user.model';
 
 @Injectable()
 export class AuthService {
