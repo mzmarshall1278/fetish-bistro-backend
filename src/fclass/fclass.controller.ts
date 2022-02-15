@@ -20,7 +20,7 @@ export class FclassController {
         return this.fclassService.createClass(createClassDto)
     }
 
-    @Put('/id')
+    @Put('/:id')
     @UseGuards(AuthGuard())
     closeFclassRegistration (@Param('id') id: string): Promise<FClass> {
         return this.fclassService.closeFclassRegistration(id);
