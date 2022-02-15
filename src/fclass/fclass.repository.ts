@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, UpdateWriteOpResult } from "mongoose";
+import { Model } from "mongoose";
 import { CreateClassDto } from "./dto/createClass.dto";
 import { FClass } from "./fclass.model";
 import { RegistrationService } from '../registration/registration.service';
