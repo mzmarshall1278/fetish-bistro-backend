@@ -1,9 +1,11 @@
 import { RegistrationService } from './registration.service';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { RegisterClassDto } from './dto/registerClass.dto';
 import { Registration } from './registration.model';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('registration')
+@UseGuards(AuthGuard())
 export class RegistrationController {
     constructor(private registrationService: RegistrationService){}
     @Post('/')
