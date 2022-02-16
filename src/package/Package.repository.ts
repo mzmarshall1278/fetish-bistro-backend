@@ -34,10 +34,10 @@ export class PackageRepository {
         return savedPackage;
     }
 
-    async addComment(addCommentDto: AddCommentDto): Promise<Package>{
-        const {userName, packageId, rating, comment} = addCommentDto;
+    async addComment(addCommentDto: AddCommentDto, user: User): Promise<Package>{
+        const {userName, packageId, rating, comment,} = addCommentDto;
 
-        const commentToSave = {username: userName, rating, comment}
+        const commentToSave = {username: userName, rating, comment, userId: user.id}
         return this.Package.findOneAndUpdate({id: packageId}, {$push: {comments: commentToSave}})
     }
 
