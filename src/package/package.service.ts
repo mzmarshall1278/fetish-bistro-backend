@@ -25,8 +25,8 @@ export class PackageService {
             return this.packageRepository.createPackage(createPackageDto, user);
         }
 
-        async addComment(addCommentDto: AddCommentDto): Promise<Package>{
-            return this.packageRepository.addComment(addCommentDto);
+        async addComment(addCommentDto: AddCommentDto, user: User): Promise<Package>{
+            return this.packageRepository.addComment(addCommentDto, user);
         }
 
         async updatePackage(updatePackageDto: UpdatePackageDto, user: User): Promise<Package>{
