@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { getPackageFilterDto } from "./dto/getFilter.dto";
@@ -6,6 +6,7 @@ import { Package } from "./Package.model";
 import { CreatePackageDto } from './dto/createPackage.dto';
 import { AddCommentDto } from './dto/addComment.dto';
 import { UpdatePackageDto } from './dto/updatePackage.dto';
+import { User } from "src/auth/user.model";
 
 @Injectable()
 export class PackageRepository {
@@ -24,7 +25,8 @@ export class PackageRepository {
         return found;
     }
 
-    async createPackage(createPackageDto: CreatePackageDto): Promise<Package>{
+    async createPackage(createPackageDto: CreatePackageDto, user: User): Promise<Package>{
+        if(user.UserType !== 'Admin') throw new UnauthorizedException('Not AUthorized');
         const {name, price, description, available, imageUrl, quantity} = createPackageDto;
         const savedPackage = await new this.Package({
             name, price, description, available, imageUrl, quantity
@@ -39,8 +41,8 @@ export class PackageRepository {
         return this.Package.findOneAndUpdate({id: packageId}, {$push: {comments: commentToSave}})
     }
 
-    async updatePackage(updatePackageDto: UpdatePackageDto): Promise<Package>{
-
+    async updatePackage(updatePackageDto: UpdatePackageDto, user: User): Promise<Package>{
+        if(user.UserType !== 'Admin') throw new UnauthorizedException('Not AUthorized');
         const {id, name, description, imageUrl, available} = updatePackageDto
 
         let updatedPackage;
