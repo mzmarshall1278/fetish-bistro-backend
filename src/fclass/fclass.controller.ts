@@ -4,6 +4,8 @@ import { FclassService } from './fclass.service';
 import { CreateClassDto } from './dto/createClass.dto';
 import { Registration } from 'src/registration/registration.model';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/getUser.decorator';
+import { User } from 'src/auth/user.model';
 
 @Controller('fclass')
 export class FclassController {
@@ -16,14 +18,14 @@ export class FclassController {
 
     @Post('/')
     @UseGuards(AuthGuard())
-    createClass(@Body() createClassDto: CreateClassDto): Promise<FClass>{
-        return this.fclassService.createClass(createClassDto)
+    createClass(@Body() createClassDto: CreateClassDto, @GetUser() user: User): Promise<FClass>{
+        return this.fclassService.createClass(createClassDto ,user)
     }
 
     @Put('/:id')
     @UseGuards(AuthGuard())
-    closeFclassRegistration (@Param('id') id: string): Promise<FClass> {
-        return this.fclassService.closeFclassRegistration(id);
+    closeFclassRegistration (@Param('id') id: string, @GetUser() user: User): Promise<FClass> {
+        return this.fclassService.closeFclassRegistration(id ,user);
     }
 
     @Get('/:id')
